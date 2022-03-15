@@ -169,21 +169,18 @@ class LinkedList:
         elif self.length == 0:
             print("LinkedList is empty")
         else:
-            temp = None
-            tail = self.head
             prev = self.head
+            temp = None
             curr = prev.next
+            self.head, self.tail = self.tail, self.head
             while(curr is not None):
+                curr = prev.next
                 prev.next = temp
                 temp = prev
                 prev = curr
-                curr = curr.next
-            if(curr is None):
-                prev.next = temp
-                self.head = prev
+            
             print("the linked list has been reversed:")
             self.display()
-
 
 params = None
 choiceMap = {
