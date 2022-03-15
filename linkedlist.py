@@ -163,6 +163,28 @@ class LinkedList:
             return temp
         return retval
 
+    def reverse(self):
+        if self.length == 1:
+            print("LinkedList is already reversed")
+        elif self.length == 0:
+            print("LinkedList is empty")
+        else:
+            temp = None
+            tail = self.head
+            prev = self.head
+            curr = prev.next
+            while(curr is not None):
+                prev.next = temp
+                temp = prev
+                prev = curr
+                curr = curr.next
+            if(curr is None):
+                prev.next = temp
+                self.head = prev
+            print("the linked list has been reversed:")
+            self.display()
+
+
 params = None
 choiceMap = {
         1: LinkedList.insert,
@@ -172,7 +194,8 @@ choiceMap = {
         5: LinkedList.pop_first,
         6: LinkedList.remove,
         7: LinkedList.display,
-        8: LinkedList.get
+        8: LinkedList.get,
+        9: LinkedList.reverse
         }
 
 linked_list_obj = None
@@ -195,12 +218,13 @@ if __name__=="__main__":
         print("\n6: LL: Remove (value)")
         print("\n7: LL: Display ()")
         print("\n8: LL: Get (index)")
+        print("\n9: LL: Reverse ()")
         print("\n0: Exit the program")
         choice = int(input("Enter your choice from the list above: "))
         if choice == 0:
             print("Exiting this menu")
             break
-        elif choice not in range(1,9):
+        elif choice not in range(1,10):
             print("invalid choice..Try again")
         else:
             fn = choiceMap[choice]
@@ -216,43 +240,3 @@ if __name__=="__main__":
                 print(excep)
                 print("Try again!!")
         cnt +=1
-
-    # llObj = LinkedList()
-    # llObj.display()
-    # print("removing 4 from list")
-    # llObj.remove(4)
-    # llObj.display()
-    # print("popping list")
-    # llObj.pop()
-    # llObj.display()
-    # llObj.prepend(2)
-    # llObj.display()
-    # print("popping list")
-    # llObj.pop()
-    # llObj.display()
-    # llObj.insert(0,2)
-    # llObj.display()
-    # llObj.insert(0,1)
-    # llObj.display()
-    # print("popping list")
-    # llObj.pop()
-    # llObj.display()
-    # llObj.insert(1,2)
-    # llObj.display()
-    # llObj.insert(2,3)
-    # llObj.display()
-    # llObj.insert(3,4)
-    # llObj.display()
-    # llObj.get(0)
-    # llObj.display()
-    # llObj.get(3)
-    # llObj.display()
-    # llObj.remove(4)
-    # llObj.display()
-    # llObj.remove(1)
-    # llObj.display()
-    # llObj.insert(4,5)
-    # llObj.display()
-    # print("popping first element of the list")    
-    # llObj.pop_first()
-    # llObj.display()
