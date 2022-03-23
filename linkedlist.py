@@ -182,7 +182,6 @@ class LinkedList:
             print("the linked list has been reversed:")
             self.display()
 
-params = None
 choiceMap = {
         1: LinkedList.insert,
         2: LinkedList.append,
