@@ -1,4 +1,7 @@
 
+from locale import currency
+
+
 class Node:
     def __init__(self,value):
         self.value = value
@@ -169,16 +172,14 @@ class LinkedList:
         elif self.length == 0:
             print("LinkedList is empty")
         else:
-            prev = self.head
-            temp = None
-            curr = prev.next
+            prev = None
+            curr = self.head
             self.head, self.tail = self.tail, self.head
-            while(curr is not None):
-                curr = prev.next
-                prev.next = temp
-                temp = prev
+            while (curr is not None):
+                next = curr.next
+                curr.next = prev
                 prev = curr
-            
+                curr = next
             print("the linked list has been reversed:")
             self.display()
 

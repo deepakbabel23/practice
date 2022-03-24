@@ -51,28 +51,66 @@ class BinarySearchTree:
             current_node = current_node.right
         return current_node.value
     
-    def print_bst(self):
-        """To print bst perform DFS on left subchild, then print node's value then perform
-        DFS on right subchild """
-        if self.root is None:
-            print("empty BST")
-            return
-        temp = self.root
-        node = temp
-        left_prev = temp
-        right_prev = temp
-        while True:
-            node = temp
-            left_prev = temp.left
-            right_prev = temp.right        
+    def print_bst_bfs(self):
+        """Let's do BFS here """
+        current_node = self.root
+        my_queue =[]
+        results = []
+        my_queue.append(current_node)
+        while (len(my_queue) >0):
+            current_node = my_queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                my_queue.append(current_node.left)
+            if current_node.right is not None:
+                my_queue.append(current_node.right)
+        print(results)
+
+    def print_bst_dfs_pre(self):
+        #print node value, then left and then right
+        results = []
+        def traverse(node):
+            results.append(node.value)
+            if node.left is not None:
+                traverse(node.left)
+            if node.right is not None:
+                traverse(node.right)
+        traverse(self.root)
+        print(results)
+
+    def print_bst_dfs_post(self):
+        #print left and then right and then parent
+        results = []
+        def traverse(node):            
+            if node.left is not None:
+                traverse(node.left)
+            if node.right is not None:
+                traverse(node.right)
+            results.append(node.value)
+        traverse(self.root)
+        print(results)
+    
+    def print_bst_dfs_inorder(self):
+        #print left, parent and then right
+        results = []
+        def traverse(node):            
+            if node.left is not None:
+                traverse(node.left)
+            results.append(node.value)
+            if node.right is not None:
+                traverse(node.right)
+            
+        traverse(self.root)
+        print(results)
         
 if __name__=="__main__":
     bst = BinarySearchTree()
+    bst1 = BinarySearchTree()
     # 
     bst.insert(5)
     bst.insert(3)
     bst.insert(7)
-    bst.insert(4)    
+    bst.insert(4)
     bst.insert(2)
     bst.insert(6)
     bst.insert(8)
@@ -81,3 +119,16 @@ if __name__=="__main__":
     print(bst.contains(18))
     print(bst.minimum_value(bst.root))
     print(bst.maximum_value(bst.root))
+
+    bst1.insert(47)
+    bst1.insert(21)
+    bst1.insert(76)
+    bst1.insert(18)
+    bst1.insert(27)
+    bst1.insert(52)
+    bst1.insert(82)
+    bst1.insert(17)
+    bst1.insert(28)
+    bst1.insert(51)
+    bst1.insert(83)
+    bst1.print_bst_bfs()
